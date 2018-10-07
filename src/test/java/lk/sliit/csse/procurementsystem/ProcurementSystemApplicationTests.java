@@ -1,5 +1,6 @@
 package lk.sliit.csse.procurementsystem;
 
+import lk.sliit.csse.procurementsystem.controllers.SiteManagerController;
 import lk.sliit.csse.procurementsystem.models.ItemList;
 import static org.apache.coyote.http11.Constants.a;
 import static org.junit.Assert.assertEquals;
@@ -12,24 +13,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ProcurementSystemApplicationTests {
     ItemList il = new ItemList();
-    
+    SiteManagerController siteManagerController = new SiteManagerController();
     @Test
     public void contextLoads() {
     }
     @Test
     public void addItemsToOrder(){
         
-       //il.checkOrderQuantity(25,true);
-       // checkOrderQuantity(25,true)
-      //  checkOrderQuantity(25,true)
+        checkItemQty(25,true);
+        checkItemQty(0,false);
+        checkItemQty(-3,false);
+      
     }
-    
-    public void checkOrderQuantity(double bal, boolean s){
+    @Test
+    public void checkPurchaseBalance(){
         
-        boolean ex = s;
-        boolean actual = true;//object.checkBal (bal);
+    }
+    public void checkItemQty(int qty, boolean s){
+        
+        boolean expectedOutput = s;
+        boolean actualOutput = siteManagerController.checkOrderQuantity(qty);
                  
-                 assertEquals(ex,actual);
+                 assertEquals(expectedOutput,actualOutput);
         
     }
 }

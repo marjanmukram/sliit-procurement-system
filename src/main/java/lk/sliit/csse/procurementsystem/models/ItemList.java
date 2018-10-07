@@ -18,6 +18,10 @@ public class ItemList {
     private long reqOrderNo;
     private int itemId;
     private int qty;
+    public ItemList(){}
+    public ItemList(int i, int i0, int i1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
        
     public int getRelavantItemId(String itemId){
         return (int) (Math.random()*100);

@@ -62,8 +62,10 @@ public class SiteManagerController {
     return formatter.format(date);
     }
      public void addItemForOrder() {
+         
         itemList.setReqOrderNo(getNextReqOrderNo());
         itemList.getRelavantItemId(items.getItemName());
+        checkOrderQuantity(itemList.getQty());
          itemListRepository.save(itemList);
         this.itemList = new ItemList();
     }
@@ -80,7 +82,10 @@ public class SiteManagerController {
     public long getNextReqOrderNo() {
         return (materialRequestRepository.count()+1);
     }
-    
+    public boolean checkOrderQuantity(int x){
+        if(x>0) return true;
+        else return false;
+    }
 //       public List<String> completeText(String query) {
 //        List<String> results = new ArrayList<String>();
 //        for(int i = 0; i < 10; i++) {
