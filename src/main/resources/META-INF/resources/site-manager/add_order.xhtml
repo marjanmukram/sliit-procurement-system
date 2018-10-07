@@ -36,7 +36,7 @@ limitations under the License.
                   <h:outputText value="Order Request Id: " />
                 <p:inputText id="add-order-req-order-no" value="OR#{siteManagerController.getNextReqOrderNo()}" readonly="true"/>
 
-                <h:outputText value="Item name: " />
+                <h:outputText value="Item id: " />
                 <p:autoComplete id="add-item-to-order-item-name" value="#{siteManagerController.itemList.itemId}" completeMethod="#{siteManagerController.completeText}" placeholder="Item Name" />
                 <h:outputText value="Quantity: " />
                 <p:inputText id="add-item-to-order-item-qty" value="#{siteManagerController.itemList.qty}" />
