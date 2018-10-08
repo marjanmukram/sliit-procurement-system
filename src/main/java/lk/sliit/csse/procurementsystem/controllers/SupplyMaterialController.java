@@ -15,20 +15,17 @@
  */
 package lk.sliit.csse.procurementsystem.controllers;
 
-
 import java.io.IOException;
-import javax.faces.event.ActionEvent;
 import java.util.List;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-import lk.sliit.csse.procurementsystem.models.AccountingStaff;
-import lk.sliit.csse.procurementsystem.models.ItemList;
-import lk.sliit.csse.procurementsystem.repositories.AccountingStaffRepository;
-import lk.sliit.csse.procurementsystem.repositories.ItemListRepository;
+import lk.sliit.csse.procurementsystem.models.SupplyMaterial;
+import lk.sliit.csse.procurementsystem.repositories.ReceiptMaterialRepository;
+import lk.sliit.csse.procurementsystem.repositories.SupplyMaterialRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,32 +33,41 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Vithu
  */
-
 @Data
 @Named
-@ManagedBean
-public class ItemListController {
-    
-    public ItemList itemList = new ItemList();
+public class SupplyMaterialController {
+ 
+    public SupplyMaterial supplyMaterial = new SupplyMaterial();
     
     @Autowired
-    private ItemListRepository itemRepository;
+    private SupplyMaterialRepository supplyMaterialRepository;
+   
     
 
     public void addNewItem() {
-        itemRepository.save(itemList); 
-        this.itemList = new ItemList();
+        supplyMaterialRepository.save(supplyMaterial); 
+        this.supplyMaterial = new SupplyMaterial();
     }
     
-    public List<ItemList> getItem() {
-        return itemRepository.findAll();
+    public List<SupplyMaterial> getItem() {
+        return supplyMaterialRepository.findAll();
     }
     
-      public void deleteItem(long id) throws IOException {
-        itemRepository.deleteById(id);
+    public void deleteItem(long id) throws IOException {
+        supplyMaterialRepository.deleteById(id);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
+    
+    public void updateItem(long id) {
+//        Optional it = itemRepository.findById(id);
+//        itemList = (SupplyItemList) it.get();
+        
+        
+//        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+//        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+    }
+    
     
      public void buttonAction(ActionEvent actionEvent) {
         addMessage("Successfully Done");
@@ -71,4 +77,5 @@ public class ItemListController {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+    
 }

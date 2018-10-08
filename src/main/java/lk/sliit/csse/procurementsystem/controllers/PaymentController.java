@@ -17,7 +17,10 @@ public class PaymentController {
 		paymentRepository.save(payment);
 		this.payment = new Payment();
 	}
-
+        public boolean checkAddPayment(){
+            addPayment();
+            return true;
+        }
 	public List<Payment> getPayment() {
         return paymentRepository.findAll();
 	}

@@ -1,7 +1,12 @@
 package lk.sliit.csse.procurementsystem;
 
+import lk.sliit.csse.procurementsystem.controllers.GoodReceiptController;
+import lk.sliit.csse.procurementsystem.controllers.ManagementController;
+import lk.sliit.csse.procurementsystem.controllers.PaymentController;
+import lk.sliit.csse.procurementsystem.controllers.SiteController;
 import lk.sliit.csse.procurementsystem.controllers.SiteManagerController;
 import lk.sliit.csse.procurementsystem.models.ItemList;
+import lk.sliit.csse.procurementsystem.models.ReceiptMaterial;
 import static org.apache.coyote.http11.Constants.a;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -26,10 +31,7 @@ public class ProcurementSystemApplicationTests {
       
     }
     @Test
-    public void checkPurchaseBalance(){
-        
-    }
-    public void checkItemQty(int qty, boolean s){
+        public void checkItemQty(int qty, boolean s){
         
         boolean expectedOutput = s;
         boolean actualOutput = siteManagerController.checkOrderQuantity(qty);
@@ -37,4 +39,31 @@ public class ProcurementSystemApplicationTests {
                  assertEquals(expectedOutput,actualOutput);
         
     }
+    
+     
+    @Test
+    public void GoodRecieptTest(){
+        GoodReceiptController gr = new GoodReceiptController();
+        gr.addReceiptItem();
+        assertEquals(true,gr.checkRecieptItem());   
+    }
+    @Test
+        public void checkPaymentTest(){
+        PaymentController pr = new PaymentController();
+        pr.checkAddPayment();
+        assertEquals(true,pr.checkAddPayment());   
+    }
+      @Test
+        public void checkManagementTest(){
+        ManagementController mc = new ManagementController();
+        mc.checkAddNewManger();
+        assertEquals(true,mc.checkAddNewManger());   
+    }
+        @Test
+        public void checkSiteTest(){
+            SiteController sc = new SiteController();
+            sc.addSite();
+               assertEquals(true,sc.addSite());   
+        }
+    
 }
